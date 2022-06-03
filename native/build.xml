@@ -104,56 +104,56 @@
                includeantruntime="false"/>
     </target>
 
-    <target name="javah" depends="compile-core" unless="-native">
-        <mkdir dir="${build.native.folder}"/>
-        <echo level="info" message="Create native class headers in ${build.native.folder}"/>
-        <javah classpath="${module.target.classes}" destdir="${build.native.folder}" force="yes" verbose="true">
-            <class name="com.sun.jna.Function"/>
-            <class name="com.sun.jna.Native"/>
-            <class name="com.sun.jna.win32.DLLCallback"/>
-        </javah>
-        <condition property="grep" value="/usr/sfw/bin/ggrep">
-            <os name="SunOS"/>
-        </condition>
-        <condition property="grep" value="ggrep">
-            <os name="OpenBSD"/>
-        </condition>
-        <property name="grep" value="grep"/>
-        <condition property="grep.required" value="false" else="true">
-            <os name="AIX"/>
-        </condition>
-        <!-- args are based on GNU grep, other versions may differ -->
-        <apply dir="${build.native.folder}" executable="${grep}" parallel="true"
-               failonerror="${grep.required}" relative="true" output="${md5.file}">
-            <arg value="-A"/>
-            <arg value="1"/>
-            <arg value="JNIEXPORT"/>
-            <fileset dir="${build.native.folder}" includes="*.h"/>
-        </apply>
-        <!-- Clean up gcj javah output to match that of Sun's javah -->
-        <fixcrlf file="${md5.file}" eol="unix"/>
-        <replaceregexp match="^((.*\.h):JNIEXPORT[^(]+)( +\(.*)"
-                       replace="\1&#xa;\2- \3&#xa;--"
-                       byline="true"
-                       file="${md5.file}"/>
-        <replaceregexp match="(JNIEnv *\*) *env"
-                       replace="\1"
-                       byline="true"
-                       file="${md5.file}"/>
-        <replaceregexp match="&#xa;--&#xa;.*\.h-$"
-                       replace=""
-                       flags="m"
-                       file="${md5.file}"/>
-        <checksum property="md5" file="${md5.file}"/>
-        <condition property="jni.valid" value="true">
-            <or>
-                <os name="AIX"/>
-                <equals arg1="${jni.md5}" arg2="${md5}" trim="true"/>
-                <equals arg1="${jni.md5}" arg2=""/>
-            </or>
-        </condition>
-    </target>
-
+    <!-- <target name="javah" depends="compile-core" unless="-native"> -->
+    <!--     <mkdir dir="${build.native.folder}"/> -->
+    <!--     <echo level="info" message="Create native class headers in ${build.native.folder}"/> -->
+    <!--     <javah classpath="${module.target.classes}" destdir="${build.native.folder}" force="yes" verbose="true"> -->
+    <!--         <class name="com.sun.jna.Function"/> -->
+    <!--         <class name="com.sun.jna.Native"/> -->
+    <!--         <class name="com.sun.jna.win32.DLLCallback"/> -->
+    <!--     </javah> -->
+    <!--     <condition property="grep" value="/usr/sfw/bin/ggrep"> -->
+    <!--         <os name="SunOS"/> -->
+    <!--     </condition> -->
+    <!--     <condition property="grep" value="ggrep"> -->
+    <!--         <os name="OpenBSD"/> -->
+    <!--     </condition> -->
+    <!--     <property name="grep" value="grep"/> -->
+    <!--     <condition property="grep.required" value="false" else="true"> -->
+    <!--         <os name="AIX"/> -->
+    <!--     </condition> -->
+    <!--     <!-- args are based on GNU grep, other versions may differ --> -->
+    <!--     <apply dir="${build.native.folder}" executable="${grep}" parallel="true" -->
+    <!--            failonerror="${grep.required}" relative="true" output="${md5.file}"> -->
+    <!--         <arg value="-A"/> -->
+    <!--         <arg value="1"/> -->
+    <!--         <arg value="JNIEXPORT"/> -->
+    <!--         <fileset dir="${build.native.folder}" includes="*.h"/> -->
+    <!--     </apply> -->
+    <!--     <!-- Clean up gcj javah output to match that of Sun's javah --> -->
+    <!--     <fixcrlf file="${md5.file}" eol="unix"/> -->
+    <!--     <replaceregexp match="^((.*\.h):JNIEXPORT[^(]+)( +\(.*)" -->
+    <!--                    replace="\1&#xa;\2- \3&#xa;--" -->
+    <!--                    byline="true" -->
+    <!--                    file="${md5.file}"/> -->
+    <!--     <replaceregexp match="(JNIEnv *\*) *env" -->
+    <!--                    replace="\1" -->
+    <!--                    byline="true" -->
+    <!--                    file="${md5.file}"/> -->
+    <!--     <replaceregexp match="&#xa;--&#xa;.*\.h-$" -->
+    <!--                    replace="" -->
+    <!--                    flags="m" -->
+    <!--                    file="${md5.file}"/> -->
+    <!--     <checksum property="md5" file="${md5.file}"/> -->
+    <!--     <condition property="jni.valid" value="true"> -->
+    <!--         <or> -->
+    <!--             <os name="AIX"/> -->
+    <!--             <equals arg1="${jni.md5}" arg2="${md5}" trim="true"/> -->
+    <!--             <equals arg1="${jni.md5}" arg2=""/> -->
+    <!--         </or> -->
+    <!--     </condition> -->
+    <!-- </target> -->
+    <!---->
     <!-- ########### W32 version resource ################ -->
     <condition property="-rsrc">
         <and>

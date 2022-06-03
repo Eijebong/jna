@@ -105,7 +105,7 @@
     JDK 11 is the last JDK, that supports creation of Java 6 compatible class
     files.
   -->
-  <condition property="compatibility" value="1.6" else="9">
+  <condition property="compatibility" value="1.6" else="8">
     <matches pattern="^1\.\d+$" string="${ant.java.version}"/>
   </condition>
 
@@ -834,51 +834,51 @@ osname=macosx;processor=aarch64
   </target>
 
   <!-- Invalidate native libraries when native API changes -->
-  <target name="-native-api-check" depends="javah" unless="jni.valid">
-    <echo>Invalidating native code, new checksum is ${md5}</echo>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-ppc.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-ppc64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-x86.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-x86-64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-aarch64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/win32-x86.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/win32-x86-64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/win32-aarch64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/w32ce-arm.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-x86.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-x86-64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-arm.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-armel.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-aarch64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-ia64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-ppc.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-ppc64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-ppc64le.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-sparcv9.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-mips64el.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-loongarch64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-s390x.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-riscv64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/freebsd-x86.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/freebsd-x86-64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/openbsd-x86.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/openbsd-x86-64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/sunos-x86.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/sunos-x86-64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/sunos-sparc.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/sunos-sparcv9.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-arm.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-armv7.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-aarch64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-x86.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-x86-64.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-mips.jar" overwrite="true"/>
-    <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-mips64.jar" overwrite="true"/>
-    <delete failOnError="false" includeEmptyDirs="true">
-      <fileset dir="${build.native}" includes="*.o,*jnidispatch*"/>
-    </delete>
-    <fail>API for native code has changed, or javah output is inconsistent.  Re-run this build after checking ${md5.file} or updating jni.version and jni.md5 in build.xml</fail>
-  </target>
+  <!-- <target name="-native-api-check" depends="javah" unless="jni.valid"> -->
+  <!--   <echo>Invalidating native code, new checksum is ${md5}</echo> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-ppc.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-ppc64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-x86.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-x86-64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/darwin-aarch64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/win32-x86.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/win32-x86-64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/win32-aarch64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/w32ce-arm.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-x86.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-x86-64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-arm.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-armel.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-aarch64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-ia64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-ppc.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-ppc64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-ppc64le.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-sparcv9.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-mips64el.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-loongarch64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-s390x.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/linux-riscv64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/freebsd-x86.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/freebsd-x86-64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/openbsd-x86.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/openbsd-x86-64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/sunos-x86.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/sunos-x86-64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/sunos-sparc.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/sunos-sparcv9.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-arm.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-armv7.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-aarch64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-x86.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-x86-64.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-mips.jar" overwrite="true"/> -->
+  <!--   <copy file="${lib.native}/out-of-date.jar" tofile="${lib.native}/android-mips64.jar" overwrite="true"/> -->
+  <!--   <delete failOnError="false" includeEmptyDirs="true"> -->
+  <!--     <fileset dir="${build.native}" includes="*.o,*jnidispatch*"/> -->
+  <!--   </delete> -->
+  <!--   <fail>API for native code has changed, or javah output is inconsistent.  Re-run this build after checking ${md5.file} or updating jni.version and jni.md5 in build.xml</fail> -->
+  <!-- </target> -->
 
   <target name=":rsrc">
     <condition property="-rsrc">
@@ -1062,7 +1062,7 @@ osname=macosx;processor=aarch64
     <property name="make" value="make"/>
   </target>
 
-  <target name="native-build-package" depends="javah,-native-api-check,-prepare-native">
+  <target name="native-build-package" depends="javah,-prepare-native">
     <echo file="${build}/build.sh">#!/bin/sh
 cwd=$(pwd)
 if [ -z "$JAVA_HOME" ]; then
@@ -1122,7 +1122,7 @@ cd ..
     </zip>
   </target>
 
-  <target name="native" depends="-enable-native,javah,-native-api-check,-prepare-native" unless="-native"
+  <target name="native" depends="-enable-native,javah,-prepare-native" unless="-native"
           description="Build native libraries.  Use 'ant -DCC=xxx' to build using a compiler other than gcc">
     <exec executable="${make}" dir="${native}" failonerror="true">
       <arg value="JAVA_HOME=${jdk.home}"/>

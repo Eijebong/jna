@@ -1039,12 +1039,12 @@ callManyArgsStdCallCallback(void (__stdcall *func)(long,int,double,
 #include <sys/types.h>
 #include "dispatch.h"
 JNIEXPORT jdouble JNICALL
-Java_com_sun_jna_PerformanceTest_00024JNILibrary_cos(JNIEnv *UNUSED(env), jclass UNUSED(cls), jdouble x) {
+Java_shadow_jna_PerformanceTest_00024JNILibrary_cos(JNIEnv *UNUSED(env), jclass UNUSED(cls), jdouble x) {
   return cos(x);
 }
 
 JNIEXPORT jint JNICALL
-Java_com_sun_jna_PerformanceTest_00024JNILibrary_getpid(JNIEnv *UNUSED(env), jclass UNUSED(cls)) {
+Java_shadow_jna_PerformanceTest_00024JNILibrary_getpid(JNIEnv *UNUSED(env), jclass UNUSED(cls)) {
 #ifdef _WIN32
   extern int _getpid();
   return _getpid();

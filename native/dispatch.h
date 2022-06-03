@@ -27,8 +27,8 @@
 #define MSG_SIZE 1024
 
 #include "ffi.h"
-#include "com_sun_jna_Function.h"
-#include "com_sun_jna_Native.h"
+#include "shadow_jna_Function.h"
+#include "shadow_jna_Native.h"
 #if defined(__sun__) || defined(_AIX) || defined(__linux__)
 #  include <alloca.h>
 #endif
@@ -74,56 +74,56 @@
 extern "C" {
 #endif
 
-#define CB_OPTION_DIRECT com_sun_jna_Native_CB_OPTION_DIRECT
-#define CB_OPTION_IN_DLL com_sun_jna_Native_CB_OPTION_IN_DLL
+#define CB_OPTION_DIRECT shadow_jna_Native_CB_OPTION_DIRECT
+#define CB_OPTION_IN_DLL shadow_jna_Native_CB_OPTION_IN_DLL
 
 /* These are the calling conventions an invocation can handle. */
 typedef enum _callconv {
-    CALLCONV_C = com_sun_jna_Function_C_CONVENTION,
+    CALLCONV_C = shadow_jna_Function_C_CONVENTION,
 #ifdef _WIN32
-    CALLCONV_STDCALL = com_sun_jna_Function_ALT_CONVENTION,
+    CALLCONV_STDCALL = shadow_jna_Function_ALT_CONVENTION,
 #endif
 } callconv_t;
 
 /* Maximum number of allowed arguments in libffi. */
-#define MAX_NARGS com_sun_jna_Function_MAX_NARGS
+#define MAX_NARGS shadow_jna_Function_MAX_NARGS
 
 enum {
-  CVT_DEFAULT = com_sun_jna_Native_CVT_DEFAULT,
-  CVT_POINTER = com_sun_jna_Native_CVT_POINTER,
-  CVT_STRING = com_sun_jna_Native_CVT_STRING,
-  CVT_STRUCTURE = com_sun_jna_Native_CVT_STRUCTURE,
-  CVT_STRUCTURE_BYVAL = com_sun_jna_Native_CVT_STRUCTURE_BYVAL,
-  CVT_BUFFER = com_sun_jna_Native_CVT_BUFFER,
-  CVT_ARRAY_BYTE = com_sun_jna_Native_CVT_ARRAY_BYTE,
-  CVT_ARRAY_SHORT = com_sun_jna_Native_CVT_ARRAY_SHORT,
-  CVT_ARRAY_CHAR = com_sun_jna_Native_CVT_ARRAY_CHAR,
-  CVT_ARRAY_INT = com_sun_jna_Native_CVT_ARRAY_INT,
-  CVT_ARRAY_LONG = com_sun_jna_Native_CVT_ARRAY_LONG,
-  CVT_ARRAY_FLOAT = com_sun_jna_Native_CVT_ARRAY_FLOAT,
-  CVT_ARRAY_DOUBLE = com_sun_jna_Native_CVT_ARRAY_DOUBLE,
-  CVT_ARRAY_BOOLEAN = com_sun_jna_Native_CVT_ARRAY_BOOLEAN,
-  CVT_BOOLEAN = com_sun_jna_Native_CVT_BOOLEAN,
-  CVT_CALLBACK = com_sun_jna_Native_CVT_CALLBACK,
-  CVT_FLOAT = com_sun_jna_Native_CVT_FLOAT,
-  CVT_NATIVE_MAPPED = com_sun_jna_Native_CVT_NATIVE_MAPPED,
-  CVT_NATIVE_MAPPED_STRING = com_sun_jna_Native_CVT_NATIVE_MAPPED_STRING,
-  CVT_NATIVE_MAPPED_WSTRING = com_sun_jna_Native_CVT_NATIVE_MAPPED_WSTRING,
-  CVT_WSTRING = com_sun_jna_Native_CVT_WSTRING,
-  CVT_INTEGER_TYPE = com_sun_jna_Native_CVT_INTEGER_TYPE,
-  CVT_POINTER_TYPE = com_sun_jna_Native_CVT_POINTER_TYPE,
-  CVT_TYPE_MAPPER = com_sun_jna_Native_CVT_TYPE_MAPPER,
-  CVT_TYPE_MAPPER_STRING = com_sun_jna_Native_CVT_TYPE_MAPPER_STRING,
-  CVT_TYPE_MAPPER_WSTRING = com_sun_jna_Native_CVT_TYPE_MAPPER_WSTRING,
-  CVT_OBJECT = com_sun_jna_Native_CVT_OBJECT,
-  CVT_JNIENV = com_sun_jna_Native_CVT_JNIENV,
-  CVT_SHORT = com_sun_jna_Native_CVT_SHORT,
-  CVT_BYTE = com_sun_jna_Native_CVT_BYTE,
+  CVT_DEFAULT = shadow_jna_Native_CVT_DEFAULT,
+  CVT_POINTER = shadow_jna_Native_CVT_POINTER,
+  CVT_STRING = shadow_jna_Native_CVT_STRING,
+  CVT_STRUCTURE = shadow_jna_Native_CVT_STRUCTURE,
+  CVT_STRUCTURE_BYVAL = shadow_jna_Native_CVT_STRUCTURE_BYVAL,
+  CVT_BUFFER = shadow_jna_Native_CVT_BUFFER,
+  CVT_ARRAY_BYTE = shadow_jna_Native_CVT_ARRAY_BYTE,
+  CVT_ARRAY_SHORT = shadow_jna_Native_CVT_ARRAY_SHORT,
+  CVT_ARRAY_CHAR = shadow_jna_Native_CVT_ARRAY_CHAR,
+  CVT_ARRAY_INT = shadow_jna_Native_CVT_ARRAY_INT,
+  CVT_ARRAY_LONG = shadow_jna_Native_CVT_ARRAY_LONG,
+  CVT_ARRAY_FLOAT = shadow_jna_Native_CVT_ARRAY_FLOAT,
+  CVT_ARRAY_DOUBLE = shadow_jna_Native_CVT_ARRAY_DOUBLE,
+  CVT_ARRAY_BOOLEAN = shadow_jna_Native_CVT_ARRAY_BOOLEAN,
+  CVT_BOOLEAN = shadow_jna_Native_CVT_BOOLEAN,
+  CVT_CALLBACK = shadow_jna_Native_CVT_CALLBACK,
+  CVT_FLOAT = shadow_jna_Native_CVT_FLOAT,
+  CVT_NATIVE_MAPPED = shadow_jna_Native_CVT_NATIVE_MAPPED,
+  CVT_NATIVE_MAPPED_STRING = shadow_jna_Native_CVT_NATIVE_MAPPED_STRING,
+  CVT_NATIVE_MAPPED_WSTRING = shadow_jna_Native_CVT_NATIVE_MAPPED_WSTRING,
+  CVT_WSTRING = shadow_jna_Native_CVT_WSTRING,
+  CVT_INTEGER_TYPE = shadow_jna_Native_CVT_INTEGER_TYPE,
+  CVT_POINTER_TYPE = shadow_jna_Native_CVT_POINTER_TYPE,
+  CVT_TYPE_MAPPER = shadow_jna_Native_CVT_TYPE_MAPPER,
+  CVT_TYPE_MAPPER_STRING = shadow_jna_Native_CVT_TYPE_MAPPER_STRING,
+  CVT_TYPE_MAPPER_WSTRING = shadow_jna_Native_CVT_TYPE_MAPPER_WSTRING,
+  CVT_OBJECT = shadow_jna_Native_CVT_OBJECT,
+  CVT_JNIENV = shadow_jna_Native_CVT_JNIENV,
+  CVT_SHORT = shadow_jna_Native_CVT_SHORT,
+  CVT_BYTE = shadow_jna_Native_CVT_BYTE,
 };
 
 /* callback behavior flags */
 enum {
-  CB_HAS_INITIALIZER = com_sun_jna_Native_CB_HAS_INITIALIZER,
+  CB_HAS_INITIALIZER = shadow_jna_Native_CB_HAS_INITIALIZER,
 };
 
 typedef struct _callback {
