@@ -4,6 +4,19 @@
 [![Travis Build Status](https://api.travis-ci.com/java-native-access/jna.svg?branch=master)](https://travis-ci.com/github/java-native-access/jna)
 [![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/j6vmpjrw5iktb8iu/branch/master?svg=true)](https://ci.appveyor.com/project/dblock/jna-gsxuq/branch/master)
 
+
+## Divvun special
+
+Make sure you have all necessary build tool, then run:
+
+```
+ant javah
+ant native
+ant jar
+```
+
+If all of the commands above are success, you'll have './build/jna-jpms.jar' file. That'll jar file we need for divvunspell-sdk-library (./lib/jna.jar).
+
 Java Native Access (JNA)
 ========================
 
