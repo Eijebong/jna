@@ -37,6 +37,4 @@ jobs:
           brew install libtool --force
       - name: Build with Ant
         run: |
-          ant javah
-          ant native
-          ant jar
+          ./build.sh
