@@ -8,7 +8,6 @@ ant javah
 
 # find and replace package & headers name
 find ./build/headers/ -type f -exec sed -i -e "s/com_sun_jna/shadow_jna/g" {} \;  # rename within files
-rm ./build/headers/*-e
 mv ./build/headers/com_sun_jna_Native.h ./build/headers/shadow_jna_Native.h
 mv ./build/headers/com_sun_jna_Function.h ./build/headers/shadow_jna_Function.h
 mv ./build/headers/com_sun_jna_win32_DLLCallback.h ./build/headers/shadow_jna_win32_DLLCallback.h
